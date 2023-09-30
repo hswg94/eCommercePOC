@@ -1,6 +1,8 @@
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product.jsx";
 import { useGetProductsQuery } from "../slices/productsApiSlice.js";
+import Loader from "../components/Loader.jsx";
+import Message from "../components/Message.jsx";
 
 const HomeScreen = () => {
   const { data: productsData, isLoading, isError } = useGetProductsQuery();
@@ -8,9 +10,11 @@ const HomeScreen = () => {
   return (
     <>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : isError ? (
-        <div>{isError?.data.message || isError.error}</div>
+        <Message variant="danger">
+          {isError?.data.message || isError.error}
+        </Message>
       ) : (
         <>
           <h1>Latest Products</h1>
