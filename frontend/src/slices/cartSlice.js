@@ -11,22 +11,38 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const item = action.payload;
-      const existsItem = state.cartItems.find((x) => {
-        x._id === item._id;
-      });
+      const existsItem = state.cartItems.find((x) => x._id === item._id);
 
       if (existsItem) {
-        state.cartItems = state.cartItems.map((x) =>
-          x._id === existsItem.id ? item : x
-        );
+        // If the item already exists in the cart, update its quantity
+        existsItem.qty += item.qty;
       } else {
+        // If the item doesn't exist in the cart, add it
         state.cartItems = [...state.cartItems, item];
       }
+      return updateCart(state);
+    },
+    setQuantity: (state, action) => {
+      const item = action.payload;
+      const existsItem = state.cartItems.find((x) => x._id === item._id);
+
+      if (existsItem) {
+        // If the item already exists in the cart, update its quantity
+        existsItem.qty = item.qty;
+      } else {
+        // If the item doesn't exist in the cart, add it
+        state.cartItems = [...state.cartItems, item];
+      }
+      return updateCart(state);
+    },
+    removeFromCart: (state, action) => {
+      const itemIdToRemove = action.payload; // This should be the _id
+      state.cartItems = state.cartItems.filter((x) => x._id !== itemIdToRemove);
       return updateCart(state);
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, setQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;
