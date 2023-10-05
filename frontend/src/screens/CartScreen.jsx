@@ -18,14 +18,19 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
   const setQuantityHandler = async (product, qty) => {
     dispatch(setQuantity({...product, qty})); // Pass both id and qty to the action
   };
 
-
   const removeFromCartHandler = async (id) => {
     dispatch(removeFromCart(id)); // Pass only the _id to the action
   };
+
+  const checkoutHandler = () => {
+    navigate(`/login?redirect=/shipping`)
+  }
+
   return (
     <Row>
       <Col md={8}>
@@ -96,7 +101,8 @@ const CartScreen = () => {
                 type="button"
                 className="btn-block"
                 disabled={cartItems.length === 0}
-              ></Button>
+                onClick={checkoutHandler}
+              >Proceed to Checkout</Button>
             </ListGroup.Item>
           </ListGroup>
         </Card>
