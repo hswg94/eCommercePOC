@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
+
 // @desc    Register user
 // @route   POST /api/users/
 // @access  Public
