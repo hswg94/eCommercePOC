@@ -1,12 +1,30 @@
 import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
+import generateToken from '../utils/generateToken.js';
 
 // @desc    Register user
 // @route   POST /api/users/
 // @access  Public
 const userRegister = asyncHandler(async (req, res) => {
-  res.send(req.body);
+  const { name, email, password } = req.body;
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  } else {
+    const user = await User.create({
+      name,
+      email,
+      password,
+    });
+    generateToken(user._id, res);
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  }
 });
 
 // @desc    Auth user & get Token
@@ -18,25 +36,13 @@ const userLogin = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
   const isValidPassword = await user.matchPassword(password);
   if (user && isValidPassword) {
-
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
-    });
-
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== "dev",
-      sameSite: "strict",
-      maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
-    });
-
+    generateToken(user._id, res);
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
     });
-
   } else {
     res.status(401);
     throw new Error("Invalid email or password");
@@ -47,7 +53,11 @@ const userLogin = asyncHandler(async (req, res) => {
 // @route   POST /api/users/logout
 // @access  Private
 const userLogout = asyncHandler(async (req, res) => {
-  res.send("Logout user");
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  }),
+    res.status(200).json({ message: "Logged Out Successfully" });
 });
 
 // @desc    Get user profile
