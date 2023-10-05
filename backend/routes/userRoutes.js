@@ -10,26 +10,27 @@ import {
     deleteUser,
     updateUser,
   } from '../controllers/userController.js';
+import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
 
   const router = express.Router();
 
   router.route("/")
   .post(userRegister)
-  .get(getUserAll);
+  .get(userAuth, adminAuth, getUserAll);
 
   router.route("/login")
   .post(userLogin);
 
   router.route("/logout")
-  .post(userLogout);
+  .post(userAuth, userLogout);
 
   router.route("/profile")
-  .get(userProfile)
-  .put(userUpdate);
+  .get(userAuth, userProfile)
+  .put(userAuth, userUpdate);
 
   router.route("/:id")
-  .get(getUser)
-  .delete(deleteUser)
-  .put(updateUser);
+  .get(userAuth, adminAuth, getUser)
+  .delete(userAuth, adminAuth, deleteUser)
+  .put(userAuth, adminAuth, updateUser);
 
   export default router;
