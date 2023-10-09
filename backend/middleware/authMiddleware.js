@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 
-// Protect routes
+// User Authentication
 const userAuth = asyncHandler(async (req, res, next) => {
   let token = req.cookies.jwt;
   if (token) {
@@ -20,7 +20,7 @@ const userAuth = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Admin
+// Admin Authorization
 
 const adminAuth = asyncHandler(async (req, res, next) => {
     if (req.user && req.user.isAdmin) {
