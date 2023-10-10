@@ -21,7 +21,7 @@ import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
   .get(userAuth, getUserOrders)
 
   router.route("/:id")
-  .get(userAuth, adminAuth, getOrderById);
+  .get(userAuth, getOrderById);
 
   router.route("/:id/pay")
   .put(userAuth, updateOrderToPaid);
