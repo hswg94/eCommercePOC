@@ -13,25 +13,25 @@ import Loader from "../components/Loader";
 import { useGetOrderDetailsQuery } from "../slices/ordersApiSlice";
 
 const OrderScreen = () => {
-  const { id: orderId } = useParams();
-  const {
-    data: order,
-    refetch,
-    isLoading,
-    isError,
-  } = useGetOrderDetailsQuery(orderId);
+  const { id } = useParams();
+  const { data: orderData, isLoading, isError } = useGetOrderDetailsQuery(id);
 
-  return isLoading ? (
-    <Loader />
-  ) : isError ? (
-    <Message variant="danger" />
-  ) : (
+  return (
     <>
-      <h1>Order {order._id}</h1>
-      <Row>
-        <Col md={8}>Col1</Col>
-        <Col md={4}>Col2</Col>
-      </Row>
+      {isLoading ? (
+        <Loader />
+      ) : isError ? (
+        <Message variant="danger">
+        </Message>
+      ) : (
+        <>
+          <h1>Order {orderData._id}</h1>
+          <Row>
+            <Col md={8}>Col1</Col>
+            <Col md={4}>Col2</Col>
+          </Row>
+        </>
+      )}
     </>
   );
 };
