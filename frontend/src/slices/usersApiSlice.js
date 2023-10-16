@@ -12,8 +12,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     register: builder.mutation({
       query: (data) => ({
-        url: {USERS_URL},
-        method: 'POST',
+        url: { USERS_URL },
+        method: "POST",
         body: data,
       }),
     }),
@@ -23,8 +23,20 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    update: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/profile`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
 // naming convention string must start with 'use' and end with 'Query'
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = usersApiSlice;
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useRegisterMutation,
+  useUpdateMutation,
+} = usersApiSlice;
