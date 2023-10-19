@@ -5,8 +5,8 @@ import {
     userLogout,
     userProfile,
     userUpdate,
-    getUser,
-    getUserAll,
+    getUserById,
+    getAllUsers,
     deleteUser,
     updateUser,
   } from '../controllers/userController.js';
@@ -16,7 +16,7 @@ import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
 
   router.route("/")
   .post(userRegister)
-  .get(userAuth, adminAuth, getUserAll);
+  .get(userAuth, adminAuth, getAllUsers);
 
   router.route("/login")
   .post(userLogin);
@@ -29,7 +29,7 @@ import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
   .put(userAuth, userUpdate);
 
   router.route("/:id")
-  .get(userAuth, adminAuth, getUser)
+  .get(userAuth, adminAuth, getUserById)
   .delete(userAuth, adminAuth, deleteUser)
   .put(userAuth, adminAuth, updateUser);
 
