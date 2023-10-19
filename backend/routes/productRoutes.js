@@ -5,6 +5,7 @@ import {
   getAllProducts,
   getProductById,
   updateProduct,
+  createProductReview
 } from "../controllers/productController.js";
 import { userAuth, adminAuth } from "../middleware/authMiddleware.js";
 const router = express.Router();
@@ -17,5 +18,8 @@ router
   .get(getProductById)
   .put(userAuth, adminAuth, updateProduct)
   .delete(userAuth, adminAuth, deleteProduct);
+  router
+  .route("/:id/reviews")
+  .post(userAuth, createProductReview);
 
 export default router;
