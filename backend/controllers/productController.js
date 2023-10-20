@@ -119,11 +119,15 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+const deleteProductReview = asyncHandler(async (req, res) => {
+});
+
 export {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
   deleteProduct,
-  createProductReview
+  createProductReview,
+  deleteProductReview
 };
