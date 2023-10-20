@@ -166,7 +166,7 @@ const ProductScreen = () => {
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
-                    {((userInfo._id == review.user) || userInfo.isAdmin) && <p>Delete Review</p>}
+                    {((userInfo._id == review?.user) || userInfo.isAdmin) && <p>Delete Review</p>}
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>

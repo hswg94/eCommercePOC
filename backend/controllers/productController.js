@@ -5,10 +5,15 @@ import asyncHandler from "express-async-handler";
 // @route   GET /api/products
 // @access  Public
 const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
-  res.json(products);
-});
+  const pageSize = 4;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Product.countDocuments();
+  const products = await Product.find()
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
 
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+});
 // @desc    Fetch one product by ID
 // @route   GET /api/product/:id
 // @access  Public
@@ -93,7 +98,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     if (alreadyReviewed) {
       res.status(400);
-      throw new Error('Product already reviewed');
+      throw new Error("Product already reviewed");
     }
 
     const review = {
@@ -112,15 +117,14 @@ const createProductReview = asyncHandler(async (req, res) => {
       product.reviews.length;
 
     await product.save();
-    res.status(201).json({ message: 'Review added' });
+    res.status(201).json({ message: "Review added" });
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error("Product not found");
   }
 });
 
-const deleteProductReview = asyncHandler(async (req, res) => {
-});
+const deleteProductReview = asyncHandler(async (req, res) => {});
 
 export {
   getAllProducts,
@@ -129,5 +133,5 @@ export {
   updateProduct,
   deleteProduct,
   createProductReview,
-  deleteProductReview
+  deleteProductReview,
 };

@@ -108,7 +108,6 @@ const userUpdate = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select('-password');
-
   if (user) {
     res.json(user);
   } else {
@@ -144,9 +143,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private/Admin
+
 // @desc    Update user
 // @route   PUT /api/users/:id
 // @access  Private/Admin

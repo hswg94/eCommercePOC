@@ -25,7 +25,7 @@ import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
   .post(userAuth, userLogout);
 
   router.route("/profile")
-  .get(userAuth, userProfile)
+  // .get(userAuth, userProfile)
   .put(userAuth, userUpdate);
 
   router.route("/:id")

@@ -17,7 +17,7 @@ const ProductListScreen = () => {
   const { pageNumber } = useParams();
 
   const {
-    data: productsData,
+    data,
     isLoading,
     error,
     refetch,
@@ -87,7 +87,7 @@ const ProductListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {productsData.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -112,11 +112,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate
-            pages={productsData.pages}
-            page={productsData.page}
-            isAdmin={true}
-          />
+          <Paginate pages={data.pages} page={data.page} isAdmin={true}/>
         </>
       )}
     </>

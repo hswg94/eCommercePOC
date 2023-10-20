@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
