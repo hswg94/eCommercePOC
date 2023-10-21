@@ -20,6 +20,7 @@ import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { addToCart } from '../slices/cartSlice';
+import Meta from '../components/Meta';
 
 const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta title='hello'/>
           <Row>
             <Col md={6}>
               <Image src={productData.image} alt={productData.name} fluid />
