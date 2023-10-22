@@ -13,7 +13,7 @@ const PlaceOrderScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const [createOrder, { isLoading, isError }] = useCreateOrderMutation();
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
   useEffect(() => {
     if (!cart.shippingAddress.address) {
       navigate("/shipping");
@@ -124,7 +124,7 @@ const PlaceOrderScreen = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
-                { isError && <Message variant ='danger'>{isError.message}</Message>}
+                { error && <Message variant ='danger'>{error?.data?.message}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
