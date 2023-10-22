@@ -34,8 +34,9 @@ const userRegister = asyncHandler(async (req, res) => {
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  const isValidPassword = await user.matchPassword(password);
-  if (user && isValidPassword) {
+  
+  if (user) {
+    const isValidPassword = await user.matchPassword(password);
     generateToken(user._id, res);
     res.json({
       _id: user._id,
