@@ -7,6 +7,8 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+
 dotenv.config();
 
 const port = process.env.PORT;
@@ -55,3 +57,5 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 
 app.listen(port, () => console.log(`Backend server running on port ${port}`));
+app.use(notFound);
+app.use(errorHandler);

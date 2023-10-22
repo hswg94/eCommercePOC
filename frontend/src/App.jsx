@@ -8,13 +8,13 @@ const App = () => {
   return (
   <>
       <Layout>
+      <ToastContainer />
       <main className="py-3">
         <Container>
           <Outlet />
         </Container>
       </main>
       </Layout>
-      <ToastContainer />
     </>
   );
 };
