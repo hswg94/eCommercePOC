@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../../slices/usersApiSlice";
 import { logout } from "../../../slices/authSlice";
-import SearchBox from './SearchBox';
+import SearchBox from "./SearchBox";
 import { resetCart } from "../../../slices/cartSlice";
 
 const Header = () => {
@@ -29,19 +29,19 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar bg="black" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand href="/">
-              <img src={logo} alt="ProShop" />
-              Proshop
+              <img src={logo} width="50" height="50" alt="eCommerce" />{" "}
+              eCommerce
             </Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <SearchBox/>
+              <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <FaShoppingCart />
