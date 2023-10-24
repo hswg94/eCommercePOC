@@ -10,6 +10,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import helmet from 'helmet';
+import ExpressMongoSanitize from 'express-mongo-sanitize';
 
 const port = process.env.PORT || 5000;
 
@@ -17,6 +18,7 @@ connectDB();
 
 const app = express();
 app.use(helmet());
+app.use(ExpressMongoSanitize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
