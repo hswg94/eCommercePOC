@@ -17,7 +17,10 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
-app.use(helmet());
+
+//this is only temporary and needs to be updated to tighten security
+// app.use(helmet({ contentSecurityPolicy: false }));
+
 app.use(ExpressMongoSanitize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
