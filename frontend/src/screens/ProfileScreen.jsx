@@ -7,7 +7,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { useUpdateMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import { useGetOrdersQuery } from "../slices/ordersApiSlice";
+import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
 import { FaTimes } from "react-icons/fa";
 
 const ProfileScreen = () => {
@@ -22,7 +22,7 @@ const ProfileScreen = () => {
     data: ordersData,
     isLoading: ordersLoading,
     error,
-  } = useGetOrdersQuery();
+  } = useGetMyOrdersQuery();
 
   useEffect(() => {
     if (userInfo) {
