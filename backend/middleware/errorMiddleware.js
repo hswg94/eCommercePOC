@@ -1,17 +1,28 @@
 const notFound = (req, res, next) => {
-    const error = new Error(`Not Found - ${req.originalUrl}`);
-    res.status(404);
-    next(error);
-}
+  const error = new Error(`Not Found - ${req.originalUrl}`);
+  res.status(404);
+  next(error); //this looks for a function with the err parameter
+};
 
 const errorHandler = (err, req, res, next) => {
-    let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    let message = err.message;
 
+  console.log(err.stack);
+  let statusCode = err.statusCode || 500;
+  if (err.name === "CastError") {
+    statusCode = 400;
+  }
+
+  if (process.env.NODE_ENV !== "production") {
     res.status(statusCode).json({
-        message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack
+      message: err.message,
+      stack: null,
     });
+  } else {
+    res.status(statusCode).json({
+      message: err.message,
+      stack: null,
+    });
+  }
 };
 
 export { notFound, errorHandler };
