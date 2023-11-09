@@ -7,12 +7,11 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run dev --prefix frontend\"",
+    "preview": "concurrently \"npm run server\" \"npm run preview --prefix frontend\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "data:import": "node backend/seeder.js",
-    "data:destroy": "node backend/seeder.js -d",
-    "preview": "npm run build --prefix frontend && npm run server",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "data:destroy": "node backend/seeder.js -d"
   },
   "author": "William Gan",
   "license": "ISC",
