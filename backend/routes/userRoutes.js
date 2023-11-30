@@ -22,7 +22,7 @@ import { userAuth, adminAuth } from '../middleware/authMiddleware.js'
   .post(userLogin);
 
   router.route("/logout")
-  .post(userAuth, userLogout);
+  .post(userLogout);
 
   router.route("/profile")
   // .get(userAuth, userProfile)

@@ -8,6 +8,7 @@ import { useLogoutMutation } from "../../../slices/usersApiSlice";
 import { logout } from "../../../slices/authSlice";
 import SearchBox from "./SearchBox";
 import { resetCart } from "../../../slices/cartSlice";
+import { useEffect } from "react";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -26,6 +27,15 @@ const Header = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (userInfo && userInfo.expiresIn) {
+      const { expiresIn } = userInfo;
+      if (Date.now() > expiresIn) {
+        dispatch(logout());
+      }
+    }
+  });
 
   return (
     <header>
