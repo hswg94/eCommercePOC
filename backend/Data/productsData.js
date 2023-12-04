@@ -7,9 +7,7 @@ const productsData = [
     brand: 'Apple',
     category: 'Electronics',
     price: 89.99,
-    countInStock: 10,
-    rating: 4.5,
-    numReviews: 0,
+    countInStock: 99,
   },
   {
     name: 'iPhone 11 Pro 256GB Memory',
@@ -19,9 +17,7 @@ const productsData = [
     brand: 'Apple',
     category: 'Electronics',
     price: 599.99,
-    countInStock: 7,
-    rating: 4.0,
-    numReviews: 0,
+    countInStock: 99,
   },
   {
     name: 'Cannon EOS 80D DSLR Camera',
@@ -31,9 +27,7 @@ const productsData = [
     brand: 'Cannon',
     category: 'Electronics',
     price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 0,
+    countInStock: 99,
   },
   {
     name: 'Sony Playstation 4 Pro White Version',
@@ -43,9 +37,7 @@ const productsData = [
     brand: 'Sony',
     category: 'Electronics',
     price: 399.99,
-    countInStock: 11,
-    rating: 5,
-    numReviews: 0,
+    countInStock: 99,
   },
   {
     name: 'Logitech G-Series Gaming Mouse',
@@ -55,9 +47,7 @@ const productsData = [
     brand: 'Logitech',
     category: 'Electronics',
     price: 49.99,
-    countInStock: 7,
-    rating: 3.5,
-    numReviews: 0,
+    countInStock: 99,
   },
   {
     name: 'Amazon Echo Dot 3rd Generation',
@@ -67,9 +57,7 @@ const productsData = [
     brand: 'Amazon',
     category: 'Electronics',
     price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 0,
+    countInStock: 99,
   },
 ];
 
