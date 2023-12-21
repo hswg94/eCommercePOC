@@ -38,7 +38,8 @@ const PlaceOrderScreen = () => {
     } catch (error) {
       toast.error(error);
     }
-  }
+  };
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -124,9 +125,6 @@ const PlaceOrderScreen = () => {
               </ListGroup.Item>
 
               <ListGroup.Item>
-                { error && <Message variant ='danger'>{error?.data?.message}</Message>}
-              </ListGroup.Item>
-              <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn-block"
@@ -135,8 +133,14 @@ const PlaceOrderScreen = () => {
                 >
                   Place Order
                 </Button>
-                { isLoading && <Loader /> }
+                {isLoading && <Loader />}
               </ListGroup.Item>
+
+              {error && (
+                <ListGroup.Item>
+                  <Message variant="danger">{error?.data?.message}</Message>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>

@@ -12,15 +12,15 @@ const errorHandler = (err, req, res, next) => {
     statusCode = 400;
   }
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV == "production") {
     res.status(statusCode).json({
       message: err.message,
-      stack: err.stack,
+      stack: null,
     });
   } else {
     res.status(statusCode).json({
       message: err.message,
-      stack: null,
+      stack: err.stack,
     });
   }
 };
