@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "eCommerce POC",
   "type": "module",
-  "main": "./backend/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",
     "server": "nodemon backend/index.js",
