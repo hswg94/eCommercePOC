@@ -5,7 +5,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { toast } from "react-toastify";
 import Message from "../components/Message";
-import Loader from "../components/Message";
+import Loader from "../components/Loader";
 import { useCreateOrderMutation } from "../slices/ordersApiSlice";
 import { clearCartItems } from "../slices/cartSlice";
 
@@ -133,9 +133,8 @@ const PlaceOrderScreen = () => {
                 >
                   Place Order
                 </Button>
-                {isLoading && <Loader />}
+                {isLoading && <Loader/>}
               </ListGroup.Item>
-
               {error && (
                 <ListGroup.Item>
                   <Message variant="danger">{error?.data?.message}</Message>
