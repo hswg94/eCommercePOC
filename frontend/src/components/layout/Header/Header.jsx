@@ -54,8 +54,7 @@ const Header = () => {
               <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <FaShoppingCart />
-                  Cart
+                  <FaShoppingCart />{" "}Cart
                   {cartItems.length > 0 && (
                     <Badge pill bg="success" style={{ marginLeft: "5" }}>
                       {cartItems.reduce((a, c) => a + c.qty, 0)}
