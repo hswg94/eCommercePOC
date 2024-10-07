@@ -11,6 +11,7 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import helmet from 'helmet';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
+import cors from 'cors'
 
 const port = process.env.PORT || 5000;
 
@@ -25,6 +26,11 @@ app.use(ExpressMongoSanitize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use(cors({
+  origin: '', // Set this as the frontend domain
+  credentials: true, // Include cookies and other credentials in the CORS request
+}));
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
