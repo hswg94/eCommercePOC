@@ -1,1 +1,1 @@
-This project has been decoupled and discontinued
+This project has been decoupled and the repository will not have anymore changes
